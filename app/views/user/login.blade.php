@@ -1,6 +1,6 @@
 @include('layout.header')
 <div align="center">
-<img src="img/logo.png"  style="display:block;" width="150">
+<img src="img/logo.png"  style="display:block; margin-bottom:20px" width="100">
 <div class="k-block extended auto">
 
  @if ($errors->has())

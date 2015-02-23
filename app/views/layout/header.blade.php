@@ -30,7 +30,7 @@
 	<div id="wrapper">
 		@if( Auth::id() ) 
 		<div id="header">
-			<img src="img/logo.png" class="floatLeft" width="60">
+			<img src="img/logo.png" class="floatLeft" width="60"><br/>
 			<h2 style="padding:0px; margin:4px 0px 4px 0px; color:#005186">{{ Config::get('app.title') }}</h2>
 			<h3 style="color:#ccc; margin:0px; padding:0px">{{ Config::get('app.name') }}</h3>
 			<div class="ClearFix"></div>
