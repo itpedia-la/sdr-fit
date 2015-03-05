@@ -61,3 +61,9 @@ Route::get('user/access/denied' , 'UserController@userAccessDenied');
  */
 Route::get('exchange_rate', 'ExchangeRateController@index');
 Route::post('exchange/save', 'ExchangeRateController@save');
+
+/**
+ * Package 
+ * ------
+ */
+Route::get('package/','PackageController@index');
