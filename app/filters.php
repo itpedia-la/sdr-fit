@@ -44,7 +44,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('user/login')->with('message', 'ກະລຸນາເຂົ້າສູ່ລະບົບ');
+			return Redirect::guest('user/login')->with('message', 'Please login');
 		}
 	}
 });

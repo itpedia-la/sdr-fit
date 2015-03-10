@@ -7,14 +7,13 @@
  *
  */
 class CompanyProfileController extends BaseController {
-
 	
 	/**
 	 * Company Profile Index
 	 * ---------------------
 	 * @author Somwang
 	 */
-	public function profile()
+	public function index()
 	{
 		$profile  = CompanyProfile::first();
 		return View::make('company_profile.index')->with('profile',$profile);

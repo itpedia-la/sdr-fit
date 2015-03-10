@@ -39,24 +39,25 @@
 
 			<li><a href="{{ URL::to('dashboard') }}"><span class="sprite purchase-order-16">&nbsp;</span> Dashboard </a></li>	
 			
-			<li><span class="sprite area-chart-16">&nbsp;</span> ລາຍງານ
+			<li><a href="{{ URL::to('package') }}"><span class="sprite purchase-order-16">&nbsp;</span> Memberships</a></li>
+			<li><a href="{{ URL::to('member') }}"><span class="sprite purchase-order-16">&nbsp;</span> Members</a></li>
+			<li><a href="{{ URL::to('package') }}"><span class="sprite purchase-order-16">&nbsp;</span> Packages</a></li>
+			<li><span class="sprite area-chart-16">&nbsp;</span> Reports
 				<ul>
-					<li><a href="{{ URL::to('report/delivery') }}/date/{{ date('01-m-Y') }}/{{ date('t-m-Y') }}">ລາຍລະອຽດ ການສົ່ງ (Delivery Report)</a></li>
-					<li><a href="{{ URL::to('report/material/customer') }}/date/{{ date('01-m-Y') }}/{{ date('t-m-Y') }}">ການຜະລິດແຍກຕາມລູກຄ້າ (Material Report by Cust.)</a></li>
-					<li><a href="{{ URL::to('report/transaction') }}/date/{{ date('01-m-Y') }}/{{ date('t-m-Y') }}">ລາຍລະອຽດ ການຂາຍ (Transaction Report)</a></li>
+					<li><a href="{{ URL::to('report/delivery') }}/date/{{ date('01-m-Y') }}/{{ date('t-m-Y') }}">Membership report</a></li>
 				</ul>
 			</li>	
-			<li><span class="sprite gear-2-16">&nbsp;</span> ຕັ້ງຄ່າ
+			<li><span class="sprite gear-2-16">&nbsp;</span> Settings
 				<ul>
-					<li id="liUserManage"><a href="{{ URL::to('user/list') }}">ຜູ້ໃຊ້ງານ</a></li>
-					<li id="liExchangeRate"><a href="{{ URL::to('exchange') }}">ອັດຕາແລກປ່ຽນ</a></li>
-					<li id="liApplicationSetting"><a href="{{ URL::to('profile') }}">ຕັ້ງຄ່າທົ່ວໄປ</a></li>
+					<li id="liUserManage"><a href="{{ URL::to('user/list') }}">Users</a></li>
+					<li id="liExchangeRate"><a href="{{ URL::to('exchange') }}">Exchange Rate</a></li>
+					<!--  <li id="liApplicationSetting"><a href="{{ URL::to('profile') }}">General Settings</a></li>-->
 				</ul></li>
 
 			<li style="float: right" class="k-primary"> <span class="sprite businessman-16-white">&nbsp;</span>  {{ Auth::user()->firstname }}
 				<ul>
-					<li><a href="{{ URL::to('user/personal/change/password') }}">ປ່ຽນລະຫັດຜ່ານ</a></li>
-					<li><a href="{{ URL::to('user/logout') }}">ອອກຈາກລະບົບ</a></li>
+					<li><a href="{{ URL::to('user/personal/change/password') }}">Change Password</a></li>
+					<li><a href="{{ URL::to('user/logout') }}">Logout</a></li>
 				</ul>
 				
 				

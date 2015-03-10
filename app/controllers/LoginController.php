@@ -27,8 +27,8 @@ class LoginController extends Controller {
 		);
 		
 		$messages = array(
-			'email.required' => 'ກະລຸນາໃສ່  ອີເມວ',
-			'password.required' => 'ກະລຸນາໃສ່ ລະຫັດຜ່ານ'
+			'email.required' => 'Please enter user ID',
+			'password.required' => 'Please enter Password'
 		);
 	
 		$validator = Validator::make(Input::all(), $rules, $messages);

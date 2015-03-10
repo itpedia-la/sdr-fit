@@ -1,5 +1,36 @@
 
 (function($) {
+    $.fn.ddTitle = function(options) {
+
+    	
+    	var settings = $.extend({
+    		success : null
+        }, options);
+    	
+    	var data = [
+                    { text: "Mr", value: "Mr" },
+                    { text: "Mrs", value: "Mrs" },
+                    { text: "Miss", value: "Miss" }
+                ];
+
+
+        $(this).kendoDropDownList({
+            dataTextField: "text",
+            dataValueField: "value",
+            value : $(this).val(),
+            dataSource: data,
+            index: 0,
+            optionLabel: {
+            	text: '- Title -',
+            	value: ""
+	        },
+            
+        });
+
+    }
+}(jQuery));
+
+(function($) {
     $.fn.ddCurrency = function(options) {
 
     	

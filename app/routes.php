@@ -56,6 +56,13 @@ Route::post('user/group/permission/submit', array('before'=>'restrict:10', 'uses
 Route::get('user/access/denied' , 'UserController@userAccessDenied');
 
 /**
+ * Profile Route
+ * --------------
+ */
+Route::get('profile', 'CompanyProfileController@index');
+Route::post('profile/update', array('before'=>'restrict:12', 'uses' => 'CompanyProfileController@update'));
+
+/**
  * Exchange Route
  * --------------
  */
@@ -64,6 +71,24 @@ Route::post('exchange/save', 'ExchangeRateController@save');
 
 /**
  * Package 
- * ------
+ * -------
  */
 Route::get('package/','PackageController@index');
+Route::get('package/json','PackageController@getDataJson');
+Route::get('package/add','PackageController@add');
+Route::get('package/edit/{package_id}','PackageController@edit');
+Route::get('package/remove/{package_id}','PackageController@remove');
+Route::post('package/remove/submit','PackageController@removeSubmit');
+Route::post('package/save','PackageController@save');
+
+/**
+ * Member
+ * -------
+ */
+Route::get('member/','MemberController@index');
+Route::get('member/json','MemberController@getDataJson');
+Route::get('member/add','MemberController@add');
+Route::get('member/edit/{member_id}','MemberController@edit');
+Route::get('member/remove/{member_id}','MemberController@remove');
+Route::post('member/remove/submit','MemberController@removeSubmit');
+Route::post('member/save','MemberController@save');
