@@ -37,5 +37,19 @@ class Tool {
 		return $date ? date('Y-m-d',strtotime($date)) : NULL;
 		
 	}
+	
+	/**
+	 * Get Next Date
+	 * -------------
+	 * @param $date Date
+	 * @param $number_of_date Number of Days
+	 */
+	public static function getNextDate($date, $number_of_date) {
+	
+		$next_date = strtotime("+".$number_of_date." days", strtotime($date));
+		$next_date = date("Y-m-d",$next_date);
+	
+		return $next_date;
+	}
 
 }

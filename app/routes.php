@@ -70,6 +70,18 @@ Route::get('exchange_rate', 'ExchangeRateController@index');
 Route::post('exchange/save', 'ExchangeRateController@save');
 
 /**
+ * Membership
+ * ----------
+ */
+Route::get('membership/','MembershipController@index');
+Route::get('membership/json','MembershipController@getDataJson');
+Route::get('membership/add','MembershipController@add');
+Route::get('membership/edit/{package_id}','MembershipController@edit');
+Route::get('membership/remove/{package_id}','MembershipController@remove');
+Route::post('membership/remove/submit','MembershipController@removeSubmit');
+Route::post('membership/save','MembershipController@save');
+
+/**
  * Package 
  * -------
  */

@@ -61,7 +61,30 @@
     }
 }(jQuery));
 
-
+(function($) {
+    $.fn.ddPackage = function(options) {
+		$(this).kendoDropDownList({
+			dataValueField: "id",
+		    dataTextField: "name",
+		    autoBind: true,
+		    change: function(e) {
+		
+		    },
+		    optionLabel: {
+		    	name: '- Package -',
+		        id: ""
+		    },
+		    dataSource: {
+		        transport: {
+		            read: {
+		            	url: "package/json",
+		                dataType: "json",
+		            }
+		        }
+		    }
+		});
+    }
+}(jQuery));
 
 (function($) {
     $.fn.ddUnit = function(options) {
