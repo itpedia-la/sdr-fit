@@ -36,7 +36,8 @@ class Membership extends Eloquent {
 			$data[$key]['package'] = $package->name;
 			$data[$key]['start_at'] = Tool::toDate($value['start_at']);
 			$data[$key]['expired_at'] = Tool::toDate($value['expired_at']);
-			$data[$key]['status'] = Membership::getStatus($value['status']);
+			$data[$key]['statusHtml'] = Membership::getStatus($value['status']);
+			$data[$key]['status'] = $value['status'];
 			
 		}
 		return $data;

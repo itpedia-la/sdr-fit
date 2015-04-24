@@ -1,9 +1,9 @@
 @include('layout.header')
-<h3>Member</h3>
+<h3>Membership</h3>
 <hr class="hrHeader"/>
 <div align="center">
 <div class="k-block extended auto" style="width:40%">
-<div class="floatLeft">Add new Membership</div>
+<div class="floatLeft">@if(Route::input('member_id') > 0)Edit Membership @else Add new Membership @endif</div>
 <div class="floatRight">
 
 </div>
@@ -12,6 +12,7 @@
 @if ($errors->has())<div class="message green">{{ $errors->all()['0'] }}</div>@endif
 <form method="post" action="{{ URL::to('membership/save') }}">
 <input type="hidden" name="member_id" value="{{Route::input('member_id')}}">
+<input type="hidden" name="membership_id" value="{{Route::input('membership_id')}}">
 <table class="tableStyling" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
 		<td>Title: *</td>
@@ -33,18 +34,24 @@
 		<td>RFID Code: *</td>
 		<td><input type="text" name="rfid_code" id="rfid_code" class="k-textbox" value="@if(Input::old('rfid_code')){{ Input::old('rfid_code') }}@else{{@$member->rfid_code}}@endif"  style="width: 100%"></td>
 	</tr>
+	@if(@$membership->status==0)
+	<tr>
 	<tr>
 		<td colspan="2"><hr/></td>
 	</tr>
-	<tr>
+	
 		<td align="right">Member Package: *</td>
-		<td><input type="text" name="package_id" id="package_id"></td>
+		<td><input type="text" name="package_id" id="package_id" value="{{ @$membership->package_id }}"></td>
 	</tr>
 	<tr>
 		<td align="right">Start Date: *</td>
-		<td><input type="text" name="start_at" id="start_at"  ></td>
+		<td><input type="text" name="start_at" id="start_at" value="{{ Tool::toDate($membership->start_at) }}"></td>
 	</tr>
-
+	@else
+	<tr>
+		<td colspan="2"><input type="hidden" value="{{ @$membership->package_id }}" name="package_id"><input type="hidden" value="{{ Tool::toMySqlDate($membership->start_at) }}" name="start_at"></td>
+	</tr>
+	@endif
 	<tr>
 		<td>&nbsp;</td>
 		<td align="right"><a href="#" onClick="javascript:history.back()" class="k-button">Cancel</a> <button type="submit" class="k-button k-primary">Save</button></td>
