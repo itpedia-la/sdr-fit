@@ -15,7 +15,7 @@
  * Dashboard Route
  * ---------------
  */
-Route::get('/', 'DashboardController@index');
+#Route::get('/', 'DashboardController@index');
 
 /**
  * User Route
@@ -82,6 +82,12 @@ Route::post('membership/cancel/submit','MembershipController@cancelSubmit');
 Route::post('membership/save','MembershipController@save');
 
 /**
+ * Membership Payment
+ * ------------------
+ */
+Route::get('membership/payment/{membership_id}','MembershipPaymentController@payment');
+Route::post('membership/payment/save','MembershipPaymentController@payment_save');
+/**
  * Package 
  * -------
  */
@@ -104,3 +110,12 @@ Route::get('member/edit/{member_id}','MemberController@edit');
 Route::get('member/remove/{member_id}','MemberController@remove');
 Route::post('member/remove/submit','MemberController@removeSubmit');
 Route::post('member/save','MemberController@save');
+
+/**
+ * Membership Freeze
+ * ------------------
+ */
+Route::get('membership/freeze/{membership_id}','MembershipController@freeze');
+Route::post('membership/freeze/submit', 'MembershipController@freeze_submit');
+Route::get('membership/unfreeze/{membership_id}','MembershipController@unfreeze');
+Route::post('membership/unfreeze/submit', 'MembershipController@unfreeze_submit');

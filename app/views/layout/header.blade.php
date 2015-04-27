@@ -30,18 +30,16 @@
 	<div id="wrapper">
 		@if( Auth::id() ) 
 		<div id="header">
-			<!--  <img src="img/logo.png" class="floatLeft" width="60"><br/>-->
+			 <img src="img/logo.png" class="floatLeft" width="60" style="margin-right:10px">
 			<h2 style="padding:0px; margin:4px 0px 4px 0px; color:#005186">{{ Config::get('app.title') }}</h2>
 			<h3 style="color:#ccc; margin:0px; padding:0px">{{ Config::get('app.name') }}</h3>
 			<div class="ClearFix"></div>
 		</div>
 		<ul id="menu">
 
-			<li><a href="{{ URL::to('dashboard') }}"><span class="sprite purchase-order-16">&nbsp;</span> Dashboard </a></li>	
-			
-			<li><a href="{{ URL::to('membership') }}"><span class="sprite purchase-order-16">&nbsp;</span> Memberships</a></li>
-			<li><a href="{{ URL::to('member') }}"><span class="sprite purchase-order-16">&nbsp;</span> Members</a></li>
-			<li><a href="{{ URL::to('package') }}"><span class="sprite purchase-order-16">&nbsp;</span> Packages</a></li>
+			<li><a href="{{ URL::to('membership') }}"><span class="sprite invoice-16">&nbsp;</span> Memberships</a></li>
+			<!-- <li><a href="{{ URL::to('member') }}"><span class="sprite businessman-16">&nbsp;</span> Members</a></li> -->
+			<li><a href="{{ URL::to('package') }}"><span class="sprite product-16">&nbsp;</span> Packages</a></li>
 			<li><span class="sprite area-chart-16">&nbsp;</span> Reports
 				<ul>
 					<li><a href="{{ URL::to('report/delivery') }}/date/{{ date('01-m-Y') }}/{{ date('t-m-Y') }}">Membership report</a></li>
@@ -54,14 +52,17 @@
 					<!--  <li id="liApplicationSetting"><a href="{{ URL::to('profile') }}">General Settings</a></li>-->
 				</ul></li>
 
+				
+			
 			<li style="float: right" class="k-primary"> <span class="sprite businessman-16-white">&nbsp;</span>  {{ Auth::user()->firstname }}
 				<ul>
 					<li><a href="{{ URL::to('user/personal/change/password') }}">Change Password</a></li>
 					<li><a href="{{ URL::to('user/logout') }}">Logout</a></li>
 				</ul>
-				
-				
+
 			</li>
+			
+			<li style="float: right">Quick Scan: <input type="text" style="margin:0; padding:0"></li>
 		</ul>
 		@else
 		<div style="margin:50px"></div>

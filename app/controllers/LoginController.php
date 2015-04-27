@@ -53,7 +53,7 @@ class LoginController extends Controller {
 				$user = User::find(Auth::id());
 				Session::put('user', $user);
 	
-				return Redirect::to('/');
+				return Redirect::to('/membership');
 				 
 			} else {
 	

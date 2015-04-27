@@ -28,9 +28,9 @@ return array(
 
 	'url' => 'http://localhost/sdr-fit/',
 
-	'title' => 'Project Template',
+	'title' => 'Sengdara Fitness',
 		
-	'name' => 'Project Template',
+	'name' => 'Member Management',
 	/*
 	|--------------------------------------------------------------------------
 	| Application Timezone

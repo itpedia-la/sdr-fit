@@ -31,6 +31,36 @@
 }(jQuery));
 
 (function($) {
+    $.fn.ddPaymentMethod = function(options) {
+
+    	var settings = $.extend({
+    		success : null
+        }, options);
+    	
+    	var data = [
+                    { text: "Cash", value: "cash" },
+                    { text: "Cheque", value: "cheque" },
+                    { text: "Bank Transfer", value: "bank_transfer" }
+                ];
+
+
+        $(this).kendoDropDownList({
+            dataTextField: "text",
+            dataValueField: "value",
+            //value : $(this).val(),
+            dataSource: data,
+            index: 0,
+            optionLabel: {
+            	text: '- Payment Method -',
+            	value: ""
+	        },
+            
+        });
+
+    }
+}(jQuery));
+
+(function($) {
     $.fn.ddCurrency = function(options) {
 
     	

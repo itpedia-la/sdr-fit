@@ -75,8 +75,10 @@ class MembershipController extends BaseController {
 			'firstname' => 'required',
 			'lastname' => 'required',
 			'rfid_code' => 'required',
+			'phone' => 'required',
 			'package_id' => 'required',
-			'start_at' => 'required'
+			'start_at' => 'required',
+			
 		);
 	
 		$messages = array (
@@ -84,6 +86,7 @@ class MembershipController extends BaseController {
 			'firstname.required' => 'Please enter Firstname', 
 			'lastname.required' => 'Please enter Lastname',
 			'rfid_code.required' => 'Please enter RFID Code',
+			'phone.required' => 'Please enter phone number',
 			'package_id.required' => 'Please select Package',
 			'start_at.required' => 'Please select Start date',
 		);
@@ -103,6 +106,8 @@ class MembershipController extends BaseController {
 			$member->firstname = Input::get('firstname');
 			$member->lastname = Input::get('lastname');
 			$member->rfid_code = Input::get('rfid_code');
+			$member->phone = Input::get('phone');
+			$member->email = Input::get('email');
 			$member->dob = Input::get('dob') ? Tool::toMySqlDate(Input::get('dob')) : NULL;
 			$member->save();
 			
@@ -112,7 +117,7 @@ class MembershipController extends BaseController {
 			$membership->member_id = $member->id;
 			$membership->start_at = $start_at;
 			$membership->package_id = Input::get('package_id');
-			$membership->status = 0;
+			$membership->status = $membership_id > 0 ? $membership->status : 0;
 
 			# Find package
 			$package = Package::find(Input::get('package_id'));
@@ -136,6 +141,56 @@ class MembershipController extends BaseController {
 		$data = Membership::getData();
 		
 		return Response::json($data)->setCallback(Input::get('callback'));
+	}
+	
+	/*
+	 * Membership Freeze
+	 * -----------------
+	 */
+	public function freeze() {
+
+		return View::make('membership/form_freeze');
+	}
+	
+	/*
+	 * Membership Freeze submit
+	 * ------------------------
+	 */
+	public function freeze_submit() {
+		
+		$membership_id = Input::get('membership_id');
+
+		$membership = Membership::find($membership_id);
+		$membership->status = 3;
+		$membership->freezed_at = Tool::toMySqlDate(Input::get('freezed_at'));
+		$membership->save();
+		
+		return Redirect::to ( 'membership' )->with ( 'message', 'Membership has been successfully freezing.' );
+	}
+	
+	/*
+	 * Membership Unfreeze
+	 * -------------------
+	 */
+	public function unfreeze() {
+	
+		return View::make('membership/form_unfreeze');
+	}
+	
+	/*
+	 * Membership Unfreeze submit
+	 * ------------------------
+	 */
+	public function unfreeze_submit() {
+	
+		$membership_id = Input::get('membership_id');
+	
+		$membership = Membership::find($membership_id);
+		$membership->status = 1;
+		$membership->unfreezed_at = Tool::toMySqlDate(Input::get('unfreezed_at'));
+		$membership->save();
+	
+		return Redirect::to ( 'membership' )->with ( 'message', 'Membership has been successfully unfreezing.' );
 	}
 
 }

@@ -8,11 +8,11 @@
 
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Membership extends Eloquent {
+class MembershipPayment extends Eloquent {
 
 	use SoftDeletingTrait;
 	
-	protected $table = 'membership';
+	protected $table = 'membership_payment';
 
 	/*
 	 * Get Data
@@ -20,7 +20,7 @@ class Membership extends Eloquent {
 	 */
 	public static function getData() {
 		
-		$data = Membership::where('id','>',0)->orderBy('id','desc')->get()->toArray();
+		$data = Membership::all()->toArray();
 		
 		foreach($data as $key =>$value) {
 			
@@ -34,10 +34,6 @@ class Membership extends Eloquent {
 			$data[$key]['vip'] = $member->vip == 1 ? 'Yes' : 'No';
 			$data[$key]['dob'] = Tool::toDate($member->dob);
 			$data[$key]['package'] = $package->name;
-			$data[$key]['rfid_code'] = $member->rfid_code;
-			$data[$key]['phone'] = $member->phone;
-			$data[$key]['freezed_at'] = Tool::toDate($value['freezed_at']);
-			$data[$key]['unfreezed_at'] = Tool::toDate($value['unfreezed_at']);
 			$data[$key]['start_at'] = Tool::toDate($value['start_at']);
 			$data[$key]['expired_at'] = Tool::toDate($value['expired_at']);
 			$data[$key]['statusHtml'] = Membership::getStatus($value['status']);

@@ -1,5 +1,6 @@
 @include('layout.header')
-<h3>Membership</h3>
+<h3>Membership Payment
+</h3>
 <hr class="hrHeader"/>
 <div align="center">
 <div class="k-block extended auto" style="width:40%">
@@ -34,6 +35,16 @@
 		<td>RFID Code: *</td>
 		<td><input type="text" name="rfid_code" id="rfid_code" class="k-textbox" value="@if(Input::old('rfid_code')){{ Input::old('rfid_code') }}@else{{@$member->rfid_code}}@endif"  style="width: 100%"></td>
 	</tr>
+	
+	<tr>
+		<td>Phone: *</td>
+		<td><input type="text" name="phone" id="phone" class="k-textbox" value="@if(Input::old('phone')){{ Input::old('phone') }}@else{{@$member->phone}}@endif"  style="width: 100%"></td>
+	</tr>
+	
+	<tr>
+		<td>Email:</td>
+		<td><input type="text" name="email" id="email" class="k-textbox" value="@if(Input::old('email')){{ Input::old('email') }}@else{{@$member->email}}@endif"  style="width: 100%"></td>
+	</tr>
 	@if(@$membership->status==0)
 	<tr>
 	<tr>
@@ -45,7 +56,7 @@
 	</tr>
 	<tr>
 		<td align="right">Start Date: *</td>
-		<td><input type="text" name="start_at" id="start_at" value="{{ Tool::toDate($membership->start_at) }}"></td>
+		<td><input type="text" name="start_at" id="start_at" value="{{ Tool::toDate(@$membership->start_at) }}"></td>
 	</tr>
 	@else
 	<tr>

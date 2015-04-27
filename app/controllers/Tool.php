@@ -39,6 +39,17 @@ class Tool {
 	}
 	
 	/**
+	 * Convert input date Mysql Date/Time
+	 * ----------------------------------
+	 * @param unknown $mysqldatetime
+	 */
+	public static function toMySqlDateTime($date)
+	{
+		return date('Y-m-d H:i:00',strtotime($date));
+	}
+	
+	
+	/**
 	 * Get Next Date
 	 * -------------
 	 * @param $date Date
