@@ -13,6 +13,23 @@
 <div class="ClearFix"></div>
 <hr/>
 @if( Session::get('message') ) <div class="message green">{{ Session::get('message') }}</div>@endif
+<hr/>
+<div align="left">
+<table>
+	<tr>
+		<td>Name:</td>
+		<td><input class="k-textbox" value="Somwang Souksavatd"></td>
+		<td>Phone:</td>
+		<td><input class="k-textbox" value="+856 5999 8848"></td>
+	</tr>
+	<tr>
+		<td>Name:</td>
+		<td><input class="k-textbox"></td>
+		<td>Name:</td>
+		<td><input class="k-textbox"></td>
+	</tr>
+</table>
+</div>
 <div id="gridMembership"></div>
 </div>
 </div>
