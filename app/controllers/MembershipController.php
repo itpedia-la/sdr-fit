@@ -192,5 +192,26 @@ class MembershipController extends BaseController {
 	
 		return Redirect::to ( 'membership' )->with ( 'message', 'Membership has been successfully unfreezing.' );
 	}
+	
+	/*
+	 * Membership Renew
+	 * ----------------
+	 */
+	public function renew() {
+
+		$member = Member::find(Route::input('member_id'));
+		$membership = Membership::find(Route::input('membership_id'));
+		
+		return View::make('membership/form_renew')->with('member',$member)->with('membership',$membership);
+	}
+	
+	/* 
+	 * Membership Renew save
+	 * -----------------------
+	 */
+	public function renew_save() {
+		
+		
+	}
 
 }

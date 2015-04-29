@@ -48,7 +48,7 @@
 			<li><span class="sprite gear-2-16">&nbsp;</span> Settings
 				<ul>
 					<li id="liUserManage"><a href="{{ URL::to('user/list') }}">Users</a></li>
-					<li id="liExchangeRate"><a href="{{ URL::to('exchange') }}">Exchange Rate</a></li>
+					<li id="liExchangeRate"><a href="{{ URL::to('exchange_rate') }}">Exchange Rate</a></li>
 					<!--  <li id="liApplicationSetting"><a href="{{ URL::to('profile') }}">General Settings</a></li>-->
 				</ul></li>
 

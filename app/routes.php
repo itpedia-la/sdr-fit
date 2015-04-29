@@ -15,7 +15,7 @@
  * Dashboard Route
  * ---------------
  */
-#Route::get('/', 'DashboardController@index');
+Route::get('/', 'MembershipController@index');
 
 /**
  * User Route
@@ -80,6 +80,8 @@ Route::get('membership/edit/{membership_id}/{member_id}','MembershipController@e
 Route::get('membership/cancel/{membership_id}','MembershipController@cancel');
 Route::post('membership/cancel/submit','MembershipController@cancelSubmit');
 Route::post('membership/save','MembershipController@save');
+Route::get('membership/renew/{membership_id}/{member_id}','MembershipController@renew');
+Route::post('membership/renew/save','MembershipController@renew_save');
 
 /**
  * Membership Payment

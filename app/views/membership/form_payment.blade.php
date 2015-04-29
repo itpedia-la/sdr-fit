@@ -2,7 +2,7 @@
 <h3>Membership</h3>
 <hr class="hrHeader"/>
 <div align="center">
-<div class="k-block extended auto" style="width:40%">
+<div class="k-block extended auto" style="width:50%">
 <div class="floatLeft">Membership Payment</div>
 <div class="floatRight">
 
@@ -42,7 +42,7 @@
 	</tr>
 	<tr>
 		<td>Payment Note:</td>
-		<td><textarea style="width:100%" class="k-textbox"></textarea></td>
+		<td><textarea style="width:100%" class="k-textbox" name="payment_note"></textarea></td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>

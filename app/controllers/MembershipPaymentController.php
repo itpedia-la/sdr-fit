@@ -56,6 +56,7 @@ class MembershipPaymentController extends BaseController {
 			$payment = new MembershipPayment();
 			$payment->membership_id = $membership_id;
 			$payment->payment_method = Input::get('payment_method');
+			$payment->payment_note = Input::get('payment_note');
 			$payment->exchange_rate_id = $exchange_rate['id'];
 			$payment->discount = Input::get('discount');
 			$payment->total = Input::get('total');
