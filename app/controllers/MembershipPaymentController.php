@@ -80,6 +80,9 @@ class MembershipPaymentController extends BaseController {
 			$membership->expired_at = $expired_at;
 			$membership->status = 1;
 			$membership->save();
+			
+			# Set expired membership to renewed stat
+			Membership::where('member_id',$membership->member_id)->where('status',4)->update(array('status'=>5));
 				
 			return Redirect::to('membership')->with('message','Payment has been successfully made.');
 		}

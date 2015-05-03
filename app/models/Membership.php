@@ -75,6 +75,11 @@ class Membership extends Eloquent {
 				$data = '<span class="tag red">Expired</span>';
 				break;
 				
+			// Renewed
+				case 5:
+				$data = '<span class="tag light-gray-bordered">Renewed</span>';
+				break;
+				
 			// Pending
 			default:
 				$data = '<span class="tag orange">Payment Waiting</span>';

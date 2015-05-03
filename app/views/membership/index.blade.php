@@ -9,7 +9,7 @@
 
 </div>
 <div class="floatRight">
-	<button class="k-button k-primary" id="btn_add">Add new Membership</button> <button class="k-button" id="btn_edit">Edit</button> <button class="k-button" id="btn_freeze">Freeze</button> <button class="k-button" id="btn_unfreeze">Unfreeze</button> <button class="k-button" id="btn_renew">Renew</button> <button class="k-button" id="btn_makepayment">Make Payment</button> <button class="k-button" id="btn_receipt_print">Receipt Print</button>
+	<button class="k-button k-primary" id="btn_add">Add new Membership</button> <button class="k-button" id="btn_edit">Edit</button> <button class="k-button" id="btn_freeze">Freeze</button> <button class="k-button" id="btn_unfreeze">Unfreeze</button> <button class="k-button" id="btn_renew">Renew</button> <button class="k-button" id="btn_makepayment">Make Payment</button> <button class="k-button" id="btn_receipt_print">Receipt</button>
 	<button class="k-button" id="btn_cancel">Cancel</button>
 </div>
 <div class="ClearFix"></div>
@@ -111,6 +111,18 @@ RFID: <input type="text" class="k-textbox" id="txt_rfid_code"> Freezed at: <inpu
 					btn_unfreeze.enable(false);
 					btn_edit.enable(false);
 					btn_renew.enable(true);
+					
+					break;
+
+				// Renewed
+				case 5:
+
+					btn_makepayment.enable(false);
+					btn_cancel.enable(false);
+					btn_freeze.enable(false);
+					btn_unfreeze.enable(false);
+					btn_edit.enable(false);
+					btn_renew.enable(false);
 					
 					break;
 

@@ -73,7 +73,7 @@ class MembershipController extends BaseController {
 		$rules = array (
 			'title' => 'required',
 			'firstname' => 'required',
-			'lastname' => 'required',
+			//'lastname' => 'required',
 			'rfid_code' => 'required',
 			'phone' => 'required',
 			'package_id' => 'required',
@@ -84,7 +84,7 @@ class MembershipController extends BaseController {
 		$messages = array (
 			'title.required' => 'Please select Member title',
 			'firstname.required' => 'Please enter Firstname', 
-			'lastname.required' => 'Please enter Lastname',
+			//'lastname.required' => 'Please enter Lastname',
 			'rfid_code.required' => 'Please enter RFID Code',
 			'phone.required' => 'Please enter phone number',
 			'package_id.required' => 'Please select Package',
@@ -212,6 +212,68 @@ class MembershipController extends BaseController {
 	public function renew_save() {
 		
 		
+		$membership_id = Input::get('membership_id');
+		$member_id = Input::get('member_id');
+		
+		$rules = array (
+				'title' => 'required',
+				'firstname' => 'required',
+				//'lastname' => 'required',
+				'rfid_code' => 'required',
+				'phone' => 'required',
+				'package_id' => 'required',
+				'start_at' => 'required',
+					
+		);
+		
+		$messages = array (
+				'title.required' => 'Please select Member title',
+				'firstname.required' => 'Please enter Firstname',
+				//'lastname.required' => 'Please enter Lastname',
+				'rfid_code.required' => 'Please enter RFID Code',
+				'phone.required' => 'Please enter phone number',
+				'package_id.required' => 'Please select Package',
+				'start_at.required' => 'Please select Start date',
+		);
+		
+		$validator = Validator::make ( Input::all (), $rules, $messages );
+		
+		if ($validator->fails ()) {
+				
+			$messages = $validator->messages ();
+		
+			return Redirect::to ($membership_id > 0 ? 'membership/edit/'.$membership_id.'/'.$member_id : 'membership/add')->withErrors($validator)->withInput();
+				
+		} else {
+		
+			$member = Member::find($member_id);
+			$member->title = Input::get('title');
+			$member->firstname = Input::get('firstname');
+			$member->lastname = Input::get('lastname');
+			$member->rfid_code = Input::get('rfid_code');
+			$member->phone = Input::get('phone');
+			$member->email = Input::get('email');
+			$member->dob = Input::get('dob') ? Tool::toMySqlDate(Input::get('dob')) : NULL;
+			$member->save();
+				
+			$start_at = Tool::toMySqlDate(Input::get('start_at'));
+		
+			$membership = new Membership();
+			$membership->member_id = $member->id;
+			$membership->start_at = $start_at;
+			$membership->package_id = Input::get('package_id');
+			$membership->status = 0;
+			
+			# Find package
+			$package = Package::find(Input::get('package_id'));
+				
+			$expired_at = Tool::getNextDate($start_at, $package->days);
+				
+			$membership->expired_at = $expired_at;
+			$membership->save();
+		
+			return Redirect::to ( 'membership' )->with ( 'message', 'Membership has been successfully renewed.' );
+		}
 	}
 
 }

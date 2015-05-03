@@ -83,6 +83,7 @@ Route::post('membership/save','MembershipController@save');
 Route::get('membership/renew/{membership_id}/{member_id}','MembershipController@renew');
 Route::post('membership/renew/save','MembershipController@renew_save');
 
+
 /**
  * Membership Payment
  * ------------------
@@ -121,3 +122,9 @@ Route::get('membership/freeze/{membership_id}','MembershipController@freeze');
 Route::post('membership/freeze/submit', 'MembershipController@freeze_submit');
 Route::get('membership/unfreeze/{membership_id}','MembershipController@unfreeze');
 Route::post('membership/unfreeze/submit', 'MembershipController@unfreeze_submit');
+
+/**
+ * Cron job
+ * --------
+ */
+Route::get('cron/membership_expired','CronController@membership_expired');

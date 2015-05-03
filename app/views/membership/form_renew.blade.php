@@ -11,7 +11,7 @@
 <div class="ClearFix"></div>
 <hr/>
 @if ($errors->has())<div class="message green">{{ $errors->all()['0'] }}</div>@endif
-<form method="post" action="{{ URL::to('membership/save') }}">
+<form method="post" action="{{ URL::to('membership/renew/save') }}">
 <input type="hidden" name="member_id" value="{{Route::input('member_id')}}">
 <input type="hidden" name="membership_id" value="{{Route::input('membership_id')}}">
 <table class="tableStyling" cellpadding="0" cellspacing="0" width="100%">
