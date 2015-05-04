@@ -42,7 +42,7 @@
 			<li><a href="{{ URL::to('package') }}"><span class="sprite product-16">&nbsp;</span> Packages</a></li>
 			<li><span class="sprite area-chart-16">&nbsp;</span> Reports
 				<ul>
-					<li><a href="{{ URL::to('report/delivery') }}/date/{{ date('01-m-Y') }}/{{ date('t-m-Y') }}">Membership report</a></li>
+					<li><a href="{{ URL::to('report/membership_sale_report') }}/{{ date('01-M-Y') }}/{{ date('t-M-Y') }}">Membership Sale Report</a></li>
 				</ul>
 			</li>	
 			<li><span class="sprite gear-2-16">&nbsp;</span> Settings

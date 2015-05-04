@@ -14,6 +14,7 @@ class MembershipController extends BaseController {
 	 */
 	public function index() {
 
+
 		return View::make('membership/index');
 	}
 	

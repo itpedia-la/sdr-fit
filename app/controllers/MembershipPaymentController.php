@@ -8,7 +8,6 @@
  */
 class MembershipPaymentController extends BaseController {
 
-	
 	/*
 	 * Membership Payment
 	 * ------------------
@@ -74,7 +73,7 @@ class MembershipPaymentController extends BaseController {
 			# Find package
 			$package = Package::find($membership->package_id);
 			
-			$expired_at = Tool::getNextDate($start_at, $package->days);
+			$expired_at = Tool::getNextDateByMonth($start_at, $package->months);
 
 			$membership->start_at = $start_at;
 			$membership->expired_at = $expired_at;

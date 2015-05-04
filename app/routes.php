@@ -129,3 +129,9 @@ Route::post('membership/unfreeze/submit', 'MembershipController@unfreeze_submit'
  */
 Route::get('cron/membership_expired','CronController@membership_expired');
 Route::get('cron/membership_freeze','CronController@membership_freeze');
+
+/**
+ * Report
+ * ------
+ */
+Route::get('report/membership_sale_report/{start_at}/{end_at}','ReportController@membership_sale_report');
