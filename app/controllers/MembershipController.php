@@ -13,7 +13,7 @@ class MembershipController extends BaseController {
 	 * -----
 	 */
 	public function index() {
-		
+
 		return View::make('membership/index');
 	}
 	
@@ -122,7 +122,7 @@ class MembershipController extends BaseController {
 			# Find package
 			$package = Package::find(Input::get('package_id'));
 			
-			$expired_at = Tool::getNextDate($start_at, $package->days);
+			$expired_at = Tool::getNextDateByMonth($start_at, $package->months);
 			
 			$membership->expired_at = $expired_at;
 			$membership->save();
@@ -138,7 +138,8 @@ class MembershipController extends BaseController {
 	 */
 	public function getDataJson() {
 		
-		$data = Membership::getData();
+		$year = Route::input('year');
+		$data = Membership::getData($year);
 		
 		return Response::json($data)->setCallback(Input::get('callback'));
 	}
@@ -200,6 +201,7 @@ class MembershipController extends BaseController {
 	public function renew() {
 
 		$member = Member::find(Route::input('member_id'));
+		
 		$membership = Membership::find(Route::input('membership_id'));
 		
 		return View::make('membership/form_renew')->with('member',$member)->with('membership',$membership);
@@ -267,11 +269,11 @@ class MembershipController extends BaseController {
 			# Find package
 			$package = Package::find(Input::get('package_id'));
 				
-			$expired_at = Tool::getNextDate($start_at, $package->days);
+			$expired_at = Tool::getNextDateByMonth($start_at, $package->months);
 				
 			$membership->expired_at = $expired_at;
 			$membership->save();
-		
+
 			return Redirect::to ( 'membership' )->with ( 'message', 'Membership has been successfully renewed.' );
 		}
 	}

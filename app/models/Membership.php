@@ -18,9 +18,17 @@ class Membership extends Eloquent {
 	 * Get Data
 	 * --------
 	 */
-	public static function getData() {
+	public static function getData($year=null) {
 		
-		$data = Membership::where('id','>',0)->orderBy('id','desc')->get()->toArray();
+		if( $year > 0) {
+
+			$data = Membership::where('id','>',0)->where('created_at','>=',$year.'-01-01')->where('created_at','<=',$year.'-12-31')->orderBy('id','desc')->get()->toArray();
+			
+		} else {
+			
+			$data = Membership::where('id','>',0)->orderBy('id','desc')->get()->toArray();
+		}
+		
 		
 		foreach($data as $key =>$value) {
 			

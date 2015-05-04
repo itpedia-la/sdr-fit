@@ -5,7 +5,7 @@
 <div align="center">
 <div class="k-block extended auto" style="width:100%">
 <div class="floatLeft">
-<input type="text" class="k-textbox"> <button class="k-button k-primary">Search</button>
+Year: <input type="text" id="year_picker" value="{{ date('Y') }}"> <input type="text" class="k-textbox"> <button class="k-button k-primary">Search</button>
 
 </div>
 <div class="floatRight">
@@ -32,6 +32,18 @@ RFID: <input type="text" class="k-textbox" id="txt_rfid_code"> Freezed at: <inpu
 <script type="text/javascript">
 	$(document).ready(function(e){
 
+		$("#year_picker").kendoDatePicker({
+			start: "decade",                          
+            depth: "decade",                           
+            format: "yyyy",
+            change : function() {
+            	var grid = $("#gridMembership").data("kendoGrid");
+                grid.dataSource.transport.options.read.url = "{{ URL::to('membership/json') }}/"+$("#year_picker").val(),
+                grid.dataSource.read();
+              
+            }
+		});
+		
 		var membership_id;
 		var member_id;
 
@@ -51,7 +63,7 @@ RFID: <input type="text" class="k-textbox" id="txt_rfid_code"> Freezed at: <inpu
 		var sourceMember = new kendo.data.DataSource({
 			transport: {
 		    	read:  {
-		           		url: "{{ URL::to('membership/json') }}",
+		           		url: "{{ URL::to('membership/json') }}/"+$("#year").val(),
 		                dataType: "json"
 		           },
 		        },
@@ -63,7 +75,7 @@ RFID: <input type="text" class="k-textbox" id="txt_rfid_code"> Freezed at: <inpu
 			membership_id = membershipid;
 			member_id = memberid;
 			
-			console.log(membership_id+'-'+member_id+'-'+status);
+			//console.log(membership_id+'-'+member_id+'-'+status);
 			
 			switch(status) {
 

@@ -74,7 +74,7 @@ Route::post('exchange/save', 'ExchangeRateController@save');
  * ----------
  */
 Route::get('membership/','MembershipController@index');
-Route::get('membership/json','MembershipController@getDataJson');
+Route::get('membership/json/{year}','MembershipController@getDataJson');
 Route::get('membership/add','MembershipController@add');
 Route::get('membership/edit/{membership_id}/{member_id}','MembershipController@edit');
 Route::get('membership/cancel/{membership_id}','MembershipController@cancel');
@@ -128,3 +128,4 @@ Route::post('membership/unfreeze/submit', 'MembershipController@unfreeze_submit'
  * --------
  */
 Route::get('cron/membership_expired','CronController@membership_expired');
+Route::get('cron/membership_freeze','CronController@membership_freeze');

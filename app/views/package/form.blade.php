@@ -18,8 +18,8 @@
 		<td><input type="text" class="k-textbox" name="name" id="name" value="@if(Input::old('name')){{ Input::old('name') }}@else{{@$package->name}}@endif" style="width: 100%"></td>
 	</tr>
 	<tr>
-		<td>Days: *</td>
-		<td><input type="text" name="days" id="days" value="@if(Input::old('days')){{ Input::old('days') }}@else{{@$package->days}}@endif"  style="width: 100%"></td>
+		<td>Months: *</td>
+		<td><input type="text" name="months" id="months" value="@if(Input::old('days')){{ Input::old('days') }}@else{{@$package->days}}@endif"  style="width: 100%"></td>
 	</tr>
 	<tr>
 		<td>Price: *</td>
@@ -37,7 +37,7 @@
 <script type="text/javascript">
 	$(document).ready(function(e){
 
-		$("#days").kendoNumericTextBox();
+		$("#months").kendoNumericTextBox();
 		$("#price").kendoNumericTextBox();
 
 	});

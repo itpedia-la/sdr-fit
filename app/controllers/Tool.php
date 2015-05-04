@@ -62,5 +62,36 @@ class Tool {
 	
 		return $next_date;
 	}
+	
+	/**
+	 * Next Date by Month
+	 * -------------------
+	 */
+	public static function getNextDateByMonth($date, $number_of_month) {
+		
+		$next_date = strtotime("+".$number_of_month." months", strtotime($date));
+		$next_date = date("Y-m-d",$next_date);
+	
+		return $next_date;
+	}
+	/**
+	 * Date interval
+	 * -------------
+	 * @param $startDate Y-m-d
+	 * @param $endDate Y-m-d
+	 */
+	public static function dateInterval($startDate, $endDate) {
+		
+		$startTimeStamp = strtotime($startDate);
+		$endTimeStamp = strtotime($endDate);
+		
+		$timeDiff = abs($endTimeStamp - $startTimeStamp);
+		
+		$numberDays = $timeDiff/86400;  // 86400 seconds in one day
+		
+		// and you might want to convert to integer
+		return $numberDays = intval($numberDays);
+		
+	}
 
 }

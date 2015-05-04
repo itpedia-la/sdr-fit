@@ -64,7 +64,7 @@
 		    	columns: [
 		    	    { field:"id", title: "ID", width: '10%',},
 		    	    { field:"name", title: "Package name", width: '30%', encoded:false },
-		    	    { field:"days", title: "Days", width: '15%', encoded:false },
+		    	    { field:"months", title: "Months", width: '15%', encoded:false },
 					{ field:"price", title: "Price", width: '15%', encoded:false },
 					{ field:"updated_at", title: "Update", width: '20%', encoded:false },
 		        ],
