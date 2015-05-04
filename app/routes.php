@@ -95,7 +95,7 @@ Route::post('membership/payment/save','MembershipPaymentController@payment_save'
  * -------
  */
 Route::get('package/','PackageController@index');
-Route::get('package/json','PackageController@getDataJson');
+Route::get('package/json/{vip}','PackageController@getDataJson');
 Route::get('package/add','PackageController@add');
 Route::get('package/edit/{package_id}','PackageController@edit');
 Route::get('package/remove/{package_id}','PackageController@remove');

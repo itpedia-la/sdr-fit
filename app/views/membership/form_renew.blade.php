@@ -16,21 +16,21 @@
 <input type="hidden" name="membership_id" value="{{Route::input('membership_id')}}">
 <table class="tableStyling" cellpadding="0" cellspacing="0" width="100%">
 	<tr>
-		<td>Title: *</td>
-		<td><input type="text" name="title" id="title" value="@if(Input::old('title')){{ Input::old('title') }}@else{{@$member->title}}@endif" ></td>
+		<td>Gender: *</td>
+		<td><input type="text" name="gender" id="gender" value="@if(Input::old('gender')){{ Input::old('gender') }}@else{{@$member->gender}}@endif" ></td>
 	</tr>
 	<tr>
-		<td>Firstname: *</td>
-		<td><input type="text" name="firstname" id="firstname" class="k-textbox" value="@if(Input::old('firstname')){{ Input::old('firstname') }}@else{{@$member->firstname}}@endif"  style="width: 100%"></td>
+		<td>Fullname: *</td>
+		<td><input type="text" name="fullname" id="fullname" class="k-textbox" value="@if(Input::old('fullname')){{ Input::old('fullname') }}@else{{@$member->fullname}}@endif"  style="width: 100%"></td>
 	</tr>
-	<tr>
+	<!-- <tr>
 		<td>Lastname: *</td>
 		<td><input type="text" name="lastname" id="lastname" class="k-textbox" value="@if(Input::old('lastname')){{ Input::old('lastname') }}@else{{@$member->lastname}}@endif"  style="width: 100%"></td>
 	</tr>
 	<tr>
 		<td>Date of Birth:</td>
 		<td><input type="text" name="dob" id="dob" value="@if(Input::old('dob')){{ Input::old('dob') }}@else{{@$member->dob}}@endif"></td>
-	</tr>
+	</tr> -->
 	<tr>
 		<td>RFID Code: *</td>
 		<td><input type="text" name="rfid_code" id="rfid_code" class="k-textbox" value="@if(Input::old('rfid_code')){{ Input::old('rfid_code') }}@else{{@$member->rfid_code}}@endif"  style="width: 100%"></td>

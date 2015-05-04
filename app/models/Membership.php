@@ -37,8 +37,8 @@ class Membership extends Eloquent {
 			
 			# Find Package
 			$package = Package::find($value['package_id']);
-			
-			$data[$key]['fullname'] = $member->title.'. '.$member->firstname.' '.$member->lastname;
+			$data[$key]['gender'] = $member->gender;
+			$data[$key]['fullname'] = $member->fullname;
 			$data[$key]['vip'] = $member->vip == 1 ? 'Yes' : 'No';
 			$data[$key]['dob'] = Tool::toDate($member->dob);
 			$data[$key]['package'] = $package->name;
@@ -67,8 +67,8 @@ class Membership extends Eloquent {
 			case 1:
 				$data = '<span class="tag green">Active</span>';
 				break;
-	
-			// Expiring
+			
+			// Active Dept
 			case 2:
 				$data = '<span class="tag orange">Expiring</span>';
 				break;

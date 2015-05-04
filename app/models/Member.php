@@ -21,7 +21,7 @@ class Member extends Eloquent {
 	public static function getData() {
 		$data = Member::all()->toArray();
 		foreach($data as $key =>$value) {
-			$data[$key]['fullname'] = $value['title'].'. '.$value['firstname'].' '.$value['lastname'];
+			$data[$key]['fullname'] = $value['fullname'];
 			$data[$key]['vip'] = $value['vip'] == 1 ? 'Yes' : 'No';
 			$data[$key]['dob'] = Tool::toDate($value['dob']);
 			$data[$key]['updated_at'] = Tool::toDate($value['updated_at']);

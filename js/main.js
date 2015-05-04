@@ -30,6 +30,38 @@
     }
 }(jQuery));
 
+
+(function($) {
+    $.fn.ddGender = function(options) {
+
+    	
+    	var settings = $.extend({
+    		success : null
+        }, options);
+    	
+    	var data = [
+                    { text: "Male", value: "Male" },
+                    { text: "Female", value: "Female" },
+
+                ];
+
+
+        $(this).kendoDropDownList({
+            dataTextField: "text",
+            dataValueField: "value",
+            value : $(this).val(),
+            dataSource: data,
+            index: 0,
+            optionLabel: {
+            	text: '- Gender -',
+            	value: ""
+	        },
+            
+        });
+
+    }
+}(jQuery));
+
 (function($) {
     $.fn.ddPaymentMethod = function(options) {
 
@@ -98,7 +130,7 @@
 		    dataTextField: "name",
 		    autoBind: true,
 		    change: function(e) {
-		
+		    	alert($(this).val());
 		    },
 		    optionLabel: {
 		    	name: '- Package -',

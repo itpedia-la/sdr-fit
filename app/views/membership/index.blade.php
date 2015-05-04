@@ -5,7 +5,7 @@
 <div align="center">
 <div class="k-block extended auto" style="width:100%">
 <div class="floatLeft">
-Year: <input type="text" id="year_picker" value="{{ date('Y') }}"> <input type="text" class="k-textbox"> <button class="k-button k-primary">Search</button>
+Year: <input type="text" id="year_picker" value="{{ date('Y') }}"> <button type="button" class="k-button" id="refresh">Refresh</button> <input type="text" class="k-textbox"> <button class="k-button k-primary">Search</button>
 
 </div>
 <div class="floatRight">
@@ -176,11 +176,12 @@ RFID: <input type="text" class="k-textbox" id="txt_rfid_code"> Freezed at: <inpu
 			filter: true,
 		    	columns: [
 		    	    { field:"id", title: "ID", width: '10%',},
+		    	    { field:"gender", title: "Gender", width: '10%',},
 		    	    { field:"fullname", title: "Fullname", width: '30%', encoded:false },
 		    	    { field:"rfid_code", title: "rfid_code", width: '20%', encoded:false, hidden : true },
 		    	    { field:"phone", title: "Phone", width: '20%', encoded:false },
 		    	    { field:"package", title: "Package", width: '20%', encoded:false },
-		    	    { field:"start_at", title: "Start at", width: '15%', encoded:false },
+		    	    { field:"start_at", title: "Issue", width: '15%', encoded:false },
 					{ field:"expired_at", title: "Expired at", width: '15%', encoded:false },
 					//{ field:"freezed_at", title: "Freezed", width: '15%', encoded:false },
 					//{ field:"unfreezed_at", title: "Unfreezed", width: '15%', encoded:false },
@@ -220,6 +221,13 @@ RFID: <input type="text" class="k-textbox" id="txt_rfid_code"> Freezed at: <inpu
 			e.preventDefault();
 
 			window.location.href= '{{ URL::to("membership/renew/") }}/'+membership_id+'/'+member_id;;
+		});
+
+		$("#refresh").click(function(e){
+			e.preventDefault();
+			var grid = $("#gridMembership").data("kendoGrid");
+
+            grid.dataSource.read();
 		});
 	});
 </script>

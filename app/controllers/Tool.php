@@ -93,5 +93,17 @@ class Tool {
 		return $numberDays = intval($numberDays);
 		
 	}
+	
+	/**
+	 * Discount calc
+	 * --------------
+	 */
+	public static function discountCalc($total, $discount = 0) {
+		
+		$discount_value = ( $total * $discount) / 100;
+		$remain_value = $total - $discount_value;
+		
+		return array('discount'=>$discount_value,'remain'=>$remain_value);
+	}
 
 }

@@ -72,13 +72,13 @@ class PackageController extends BaseController {
 
 		$rules = array (
 			'name' => 'required',
-			'days' => 'required',
+			'months' => 'required',
 			'price' => 'required'
 		);
 	
 		$messages = array (
 			'name.required' => 'Please enter Package name',
-			'days.required' => 'Please enter Package days', 
+			'months.required' => 'Please enter Package days', 
 			'price.required' => 'Please enter Package price'
 		);
 	
@@ -94,7 +94,7 @@ class PackageController extends BaseController {
 
 			$package = $package_id > 0 ? Package::find($package_id) : new Package();
 			$package->name = Input::get('name');
-			$package->days = Input::get('days');
+			$package->months = Input::get('months');
 			$package->price = Input::get('price');
 			$package->save();
 				
@@ -108,8 +108,10 @@ class PackageController extends BaseController {
 	 * -------------
 	 */
 	public function getDataJson() {
-		
-		$data = Package::getData();
+	
+		$vip = (bool) Route::input('vip');
+
+		$data = Package::getData($vip);
 		
 		return Response::json($data)->setCallback(Input::get('callback'));
 	}

@@ -71,26 +71,51 @@ class MembershipController extends BaseController {
 		$membership_id = Input::get('membership_id');
 		$member_id = Input::get('member_id');
 
-		$rules = array (
-			'title' => 'required',
-			'firstname' => 'required',
-			//'lastname' => 'required',
-			'rfid_code' => 'required',
-			'phone' => 'required',
-			'package_id' => 'required',
-			'start_at' => 'required',
+		if( Input::get('vip') == 1 ) {
+			 
+			$rules = array (
+					'gender' => 'required',
+					'fullname' => 'required',
+					'rfid_code' => 'required',
+					'package_id' => 'required',
+					//'price' => 'required',
+					//'currency' => 'required',
+					'start_at' => 'required',
+					
 			
-		);
-	
-		$messages = array (
-			'title.required' => 'Please select Member title',
-			'firstname.required' => 'Please enter Firstname', 
-			//'lastname.required' => 'Please enter Lastname',
-			'rfid_code.required' => 'Please enter RFID Code',
-			'phone.required' => 'Please enter phone number',
-			'package_id.required' => 'Please select Package',
-			'start_at.required' => 'Please select Start date',
-		);
+			);
+			
+			$messages = array (
+					'gender.required' => 'Please select Gender',
+					'fullname.required' => 'Please enter Fullname',
+					'rfid_code.required' => 'Please enter RFID Code',
+					'package_id.required' => 'Please select Package',
+					//'price.required' => 'Please enter VIP Price',
+					//'currency.required' => 'Please select currency',
+					'start_at.required' => 'Please select Start date',
+					
+			);
+			
+		} else {
+			
+			$rules = array (
+				'gender' => 'required',
+				'fullname' => 'required',
+				'rfid_code' => 'required',
+				'package_id' => 'required',
+				'start_at' => 'required',
+				
+			);
+		
+			$messages = array (
+				'gender.required' => 'Please select Gender',
+				'fullname.required' => 'Please enter Fullname', 
+				'rfid_code.required' => 'Please enter RFID Code',
+				'package_id.required' => 'Please select Package',
+				'start_at.required' => 'Please select Start date',
+			);
+			
+		}
 	
 		$validator = Validator::make ( Input::all (), $rules, $messages );
 	
@@ -102,14 +127,14 @@ class MembershipController extends BaseController {
 			
 		} else {
 
+			
 			$member = $member_id > 0 ? Member::find($member_id) : new Member();
-			$member->title = Input::get('title');
-			$member->firstname = Input::get('firstname');
-			$member->lastname = Input::get('lastname');
+			$member->gender = Input::get('gender');
+			$member->fullname = Input::get('fullname');
 			$member->rfid_code = Input::get('rfid_code');
 			$member->phone = Input::get('phone');
 			$member->email = Input::get('email');
-			$member->dob = Input::get('dob') ? Tool::toMySqlDate(Input::get('dob')) : NULL;
+			//$member->dob = Input::get('dob') ? Tool::toMySqlDate(Input::get('dob')) : NULL;
 			$member->save();
 			
 			$start_at = Tool::toMySqlDate(Input::get('start_at'));
@@ -119,9 +144,23 @@ class MembershipController extends BaseController {
 			$membership->start_at = $start_at;
 			$membership->package_id = Input::get('package_id');
 			$membership->status = $membership_id > 0 ? $membership->status : 0;
+			$membership->discount = Input::get('discount');
+			$membership->remark = Input::get('remark');
 
 			# Find package
 			$package = Package::find(Input::get('package_id'));
+
+			$price = Input::get('vip') == 1 ? Input::get('price') : $package->price;
+			
+			$discount = Tool::discountCalc($price, Input::get('discount'));
+
+			$membership->total_usd = Input::get('total_usd');
+	
+			$membership->total_thb = Input::get('total_thb');
+		
+			$membership->total_lak =  Input::get('total_lak');
+	
+			$membership->grand_total = $discount['remain'];
 			
 			$expired_at = Tool::getNextDateByMonth($start_at, $package->months);
 			
@@ -219,22 +258,22 @@ class MembershipController extends BaseController {
 		$member_id = Input::get('member_id');
 		
 		$rules = array (
-				'title' => 'required',
-				'firstname' => 'required',
+				'gender' => 'required',
+				'fullname' => 'required',
 				//'lastname' => 'required',
 				'rfid_code' => 'required',
-				'phone' => 'required',
+				//'phone' => 'required',
 				'package_id' => 'required',
 				'start_at' => 'required',
 					
 		);
 		
 		$messages = array (
-				'title.required' => 'Please select Member title',
-				'firstname.required' => 'Please enter Firstname',
+				'gender.required' => 'Please select Gender',
+				'fullname.required' => 'Please enter Fullname',
 				//'lastname.required' => 'Please enter Lastname',
 				'rfid_code.required' => 'Please enter RFID Code',
-				'phone.required' => 'Please enter phone number',
+				//'phone.required' => 'Please enter phone number',
 				'package_id.required' => 'Please select Package',
 				'start_at.required' => 'Please select Start date',
 		);
@@ -250,13 +289,13 @@ class MembershipController extends BaseController {
 		} else {
 		
 			$member = Member::find($member_id);
-			$member->title = Input::get('title');
-			$member->firstname = Input::get('firstname');
-			$member->lastname = Input::get('lastname');
+			$member->gender = Input::get('gender');
+			$member->fullname = Input::get('fullname');
+			//$member->lastname = Input::get('lastname');
 			$member->rfid_code = Input::get('rfid_code');
 			$member->phone = Input::get('phone');
 			$member->email = Input::get('email');
-			$member->dob = Input::get('dob') ? Tool::toMySqlDate(Input::get('dob')) : NULL;
+			//$member->dob = Input::get('dob') ? Tool::toMySqlDate(Input::get('dob')) : NULL;
 			$member->save();
 				
 			$start_at = Tool::toMySqlDate(Input::get('start_at'));
